@@ -1,5 +1,9 @@
-﻿namespace EFCoreDemo.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace EFCoreDemo.Models;
+
+
+[Table("EmployeeTable", Schema = "HR")]  // if we want to chnge the name of the sql table (not default name)
 public class Employee
 {
     public int Id { get; set; }
