@@ -3,6 +3,7 @@ using EFCoreDemo.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreDemo.Migrations
 {
     [DbContext(typeof(EFCoreDemoContext))]
-    partial class EFCoreDemoContextModelSnapshot : ModelSnapshot
+    [Migration("20251111075122_EditeModel_nullDisable")]
+    partial class EditeModel_nullDisable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,18 +32,16 @@ namespace EFCoreDemo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("Age")
+                    b.Property<int>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("Family")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Mobile")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

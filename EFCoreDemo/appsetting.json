@@ -1,5 +1,5 @@
 {
     "ConnectionStrings": {
-        "DBConnection": "Server = .; Database = EFCoreDB; Integrated Security = True; encrypt = True; TrustServerCertificate = True;"
+        "DBConnection": "Server = .; Database = AppDb; Integrated Security = True; encrypt = True; TrustServerCertificate = True;"
     }
 }
