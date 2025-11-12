@@ -10,7 +10,11 @@ public class Employee
     [Column("FirstName", TypeName = "varchar(50)")]
     public string Name { get; set; }       // nullable
     public string? Family { get; set; }   // aloww null data
-    public string Mobile { get; set; } 
+    public string Mobile { get; set; }
+
+    public DateOnly BirthDay { get; set; }
+
+    [NotMapped]
     public int? Age { get; set; }
-    public Department Department { get; set; }  // Navigation_property
+   // public Department Department { get; set; }  // Navigation_property
 }
