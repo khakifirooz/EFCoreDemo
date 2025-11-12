@@ -1,5 +1,8 @@
-﻿namespace EFCoreDemo.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace EFCoreDemo.Models;
+
+[NotMapped]   // do not create table for this entity
 public class Department
 {
     public int Id { get; set; }

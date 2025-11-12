@@ -7,6 +7,7 @@ namespace EFCoreDemo.Models;
 public class Employee
 {
     public int Id { get; set; }
+    [Column("FirstName", TypeName = "varchar(50)")]
     public string Name { get; set; }       // nullable
     public string? Family { get; set; }   // aloww null data
     public string Mobile { get; set; } 
