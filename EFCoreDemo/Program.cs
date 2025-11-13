@@ -10,12 +10,35 @@
 // Migration
 
 using EFCoreDemo;
+using EFCoreDemo.Migrations;
 using EFCoreDemo.Models;
 
-using (var context = new EFCoreDemoContext())
+
+Thread t1 = new Thread(Update1);
+Thread t2 = new Thread(Update1);
+t1.Start();
+t2.Start();
+static void Update1()
 {
-    // فقط برای تست اتصال دیتابیس
-    Console.WriteLine("Ensuring database is created...");
-    context.Database.EnsureCreated();
-    Console.WriteLine("Database created successfully!");
+    EFCoreDemoContext _context = new EFCoreDemoContext();
+    var employee = _context.Employees.Find(1);
+    if (employee != null)
+    {
+        employee.Name = "Mehrshad";
+        _context.SaveChanges();
+    }
 }
+
+static void Update2()
+{
+    EFCoreDemoContext _context = new EFCoreDemoContext();
+    var employee = _context.Employees.Find(1);
+    if (employee != null)
+    {
+        employee.Name = "Hasan";
+        _context.SaveChanges();
+    }
+}
+
+
+Console.ReadKey();
