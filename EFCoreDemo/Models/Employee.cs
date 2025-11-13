@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFCoreDemo.Models;
 
@@ -16,5 +17,8 @@ public class Employee
 
     [NotMapped]
     public int? Age { get; set; }
-   // public Department Department { get; set; }  // Navigation_property
+    // public Department Department { get; set; }  // Navigation_property
+
+    [Timestamp]
+    public byte[] RowVersion { get; set; }
 }
