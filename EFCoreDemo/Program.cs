@@ -14,10 +14,17 @@ using EFCoreDemo.Migrations;
 using EFCoreDemo.Models;
 
 
-Thread t1 = new Thread(Update1);
-Thread t2 = new Thread(Update1);
-t1.Start();
-t2.Start();
+try
+{
+    Thread t1 = new Thread(Update1);
+    Thread t2 = new Thread(Update1);
+    t1.Start();
+    t2.Start();
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message + "please try again later");
+}
 static void Update1()
 {
     EFCoreDemoContext _context = new EFCoreDemoContext();
