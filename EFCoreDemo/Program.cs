@@ -23,21 +23,23 @@ try
 }
 catch (Exception ex)
 {
-    Console.WriteLine(ex.Message + "please try again later");
+    Console.WriteLine(ex.Message + "please try again later !!");
 }
 static void Update1()
 {
+    
     EFCoreDemoContext _context = new EFCoreDemoContext();
     var employee = _context.Employees.Find(1);
     if (employee != null)
     {
-        employee.Name = "Mehrshad";
+        _context.Employees.Remove(employee);
         _context.SaveChanges();
     }
 }
 
 static void Update2()
 {
+    Thread.Sleep(1000);
     EFCoreDemoContext _context = new EFCoreDemoContext();
     var employee = _context.Employees.Find(1);
     if (employee != null)
