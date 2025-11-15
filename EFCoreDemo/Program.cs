@@ -20,6 +20,7 @@ try
     Thread t2 = new Thread(Update1);
     t1.Start();
     t2.Start();
+    Console.ReadKey();
 }
 catch (Exception ex)
 {
@@ -50,4 +51,3 @@ static void Update2()
 }
 
 
-Console.ReadKey();

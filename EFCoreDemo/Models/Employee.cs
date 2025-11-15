@@ -9,7 +9,9 @@ public class Employee
 {
     public int Id { get; set; }
     [Column("FirstName", TypeName = "varchar(50)")]
+    [ConcurrencyCheck]
     public string Name { get; set; }       // nullable
+    [ConcurrencyCheck]
     public string? Family { get; set; }   // aloww null data
     public string Mobile { get; set; }
 
@@ -19,6 +21,7 @@ public class Employee
     public int? Age { get; set; }
     // public Department Department { get; set; }  // Navigation_property
 
-    [Timestamp]
-    public byte[] RowVersion { get; set; }
+    //[Timestamp]
+    //public byte[] RowVersion { get; set; }
+
 }
