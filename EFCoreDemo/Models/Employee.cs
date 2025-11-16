@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace EFCoreDemo.Models;
 
@@ -17,6 +18,10 @@ public class Employee
     {
         Name = name;
         Family = family;
+    }
+    public Employee()
+    {
+        
     }
 
 

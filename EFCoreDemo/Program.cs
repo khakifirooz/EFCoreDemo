@@ -1,14 +1,14 @@
 ﻿using EFCoreDemo.Models;
 
-
 using var context = new EFCoreDemoContext();
-var employee = new Employee("Ali","Kamali");
+//var employee = context.Employees.Find(1);
 
-context.Employees.Add(employee);
-//context.Add<Employee>(employee); can be like this
-context.SaveChanges();  // necessary 
+//employee.Name = "Nima";
+//context.SaveChanges();
 
-
+var employee2 = new Employee() { Id = 1, Name = "Mehrshad", Family = "Khaki" };
+context.Employees.Update(employee2);
+context.SaveChanges();
 
 Console.ReadKey();
 
