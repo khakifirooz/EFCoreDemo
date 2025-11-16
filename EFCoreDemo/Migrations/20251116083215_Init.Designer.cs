@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreDemo.Migrations
 {
     [DbContext(typeof(EFCoreDemoContext))]
-    [Migration("20251111145848_Change_Table_Name_NotDefault")]
-    partial class Change_Table_Name_NotDefault
+    [Migration("20251116083215_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace EFCoreDemo.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EFCoreDemo.Models.Department", b =>
+            modelBuilder.Entity("EFCoreDemo.Models.Course", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,17 +32,18 @@ namespace EFCoreDemo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Department");
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("EFCoreDemo.Models.Employee", b =>
@@ -53,16 +54,31 @@ namespace EFCoreDemo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("Age")
+                    b.Property<string>("Family")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmployeeTable", "HR");
+                });
+
+            modelBuilder.Entity("EFCoreDemo.Models.Teacher", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("DepartmentId")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("Family")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mobile")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -72,20 +88,18 @@ namespace EFCoreDemo.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartmentId");
-
-                    b.ToTable("EmployeeTable");
+                    b.ToTable("Teacher");
                 });
 
-            modelBuilder.Entity("EFCoreDemo.Models.Employee", b =>
+            modelBuilder.Entity("EFCoreDemo.Models.Course", b =>
                 {
-                    b.HasOne("EFCoreDemo.Models.Department", "Department")
+                    b.HasOne("EFCoreDemo.Models.Teacher", "Teacher")
                         .WithMany()
-                        .HasForeignKey("DepartmentId")
+                        .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Department");
+                    b.Navigation("Teacher");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,53 +1,15 @@
-﻿
-
-//using EFCoreDemo;
-
-//using (var context = new EFCoreDemoContext())
-//{
-//    var result = context.Database.EnsureCreated();
-//}
-
-// Migration
-
-using EFCoreDemo;
-using EFCoreDemo.Migrations;
-using EFCoreDemo.Models;
+﻿using EFCoreDemo.Models;
 
 
-try
-{
-    Thread t1 = new Thread(Update1);
-    Thread t2 = new Thread(Update1);
-    t1.Start();
-    t2.Start();
-    Console.ReadKey();
-}
-catch (Exception ex)
-{
-    Console.WriteLine(ex.Message + "please try again later !!");
-}
-static void Update1()
-{
-    
-    EFCoreDemoContext _context = new EFCoreDemoContext();
-    var employee = _context.Employees.Find(1);
-    if (employee != null)
-    {
-        _context.Employees.Remove(employee);
-        _context.SaveChanges();
-    }
-}
+using var context = new EFCoreDemoContext();
+var employee = new Employee("Ali","Kamali");
 
-static void Update2()
-{
-    Thread.Sleep(1000);
-    EFCoreDemoContext _context = new EFCoreDemoContext();
-    var employee = _context.Employees.Find(1);
-    if (employee != null)
-    {
-        employee.Name = "Hasan";
-        _context.SaveChanges();
-    }
-}
+context.Employees.Add(employee);
+//context.Add<Employee>(employee); can be like this
+context.SaveChanges();  // necessary 
+
+
+
+Console.ReadKey();
 
 
